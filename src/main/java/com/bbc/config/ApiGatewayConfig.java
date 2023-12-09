@@ -11,14 +11,22 @@ public class ApiGatewayConfig {
     @Bean
     public RouteLocator customRouteLocator(RouteLocatorBuilder builder) {
         return builder.routes()
-                .route("user_route", r -> r.path("/api/users/**")
+
+                .route("user_registration_route", r -> r.path("/api/users/**")
                         .uri("http://localhost:8092"))
+
                 .route("ride_request_route", r -> r.path("/api/rideRequests/**")
                         .uri("http://localhost:8092"))
-                .route("driver_route", r -> r.path("/api/drivers/**")
+
+                .route("driver_registration_route", r -> r.path("/api/drivers/**")
                         .uri("http://localhost:8091"))
-                .route("security_route", r -> r.path("/auths/register/**")
+
+                .route("driver_response_route", r -> r.path("/rideAssignmentResponse")
+                        .uri("http://localhost:8091"))
+
+                .route("security_route", r -> r.path("/auths/**")
                         .uri("http://localhost:8084"))
+
                 .build();
     }
 
